@@ -1,20 +1,20 @@
 import { useState } from "react";
 import {
-  Box,
   Typography,
-  TextField,
+  // TextField,
   Button,
-  Slider,
+  // Slider,
   Snackbar,
 } from "@mui/material";
 import CommandInput from "../components/CommandInput";
 import Visualization from "../components/Visualization";
 import HistoryTable from "../components/HistoryTable";
+import { Box } from "@mui/material";
 
 const MainPage = () => {
   const [commands, setCommands] = useState("");
   const [optimizedCommands, setOptimizedCommands] = useState("");
-  const [speed, setSpeed] = useState(1);
+  // const [speed, setSpeed] = useState(1);
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleOptimize = () => {
@@ -31,30 +31,40 @@ const MainPage = () => {
   };
 
   return (
-    <Box sx={{ padding: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        Manipulyator Boshqaruvi
-      </Typography>
-      <CommandInput
-        commands={commands}
-        setCommands={setCommands}
-        onOptimize={handleOptimize}
-      />
-      <Box sx={{ mt: 3 }}>
-        <Typography>Animatsiya tezligi:</Typography>
-        <Slider
-          value={speed}
-          onChange={(e, value) => setSpeed(value as number)}
-          min={0.1}
-          max={2}
-          step={0.1}
-        />
-      </Box>
-      <Visualization speed={0} />
-      <Button variant="contained" onClick={handleSend} sx={{ mt: 2 }}>
-        Yuborish
-      </Button>
-      <HistoryTable />
+    <Box sx={{ padding: 3, maxWidth: "1400px", margin: "0px auto" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <Visualization speed={10} />
+        </div>
+
+        <div>
+          <Typography variant="h4" gutterBottom>
+            Manipulyator Boshqaruvi
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+            }}
+          >
+            <CommandInput commands={commands} setCommands={setCommands} />
+            <Button
+              variant="contained"
+              onClick={handleSend}
+              sx={{ width: "full" }}
+            >
+              Tastiqlash
+            </Button>
+          </Box>
+          <HistoryTable />
+        </div>
+      </div>
+
       <Snackbar
         open={openSnackbar}
         autoHideDuration={3000}

@@ -52,6 +52,7 @@ const Visualization = ({ speed }: VisualizationProps) => {
       sx={{
         width: 400,
         height: 400,
+        margin: "60px",
         border: "1px solid black",
         position: "relative",
       }}
